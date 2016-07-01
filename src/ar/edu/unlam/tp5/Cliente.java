@@ -9,10 +9,6 @@ public class Cliente implements Comparable<Cliente>{
 		this.edad = edad;
 	}
 	
-	public Cliente(){
-		
-	}
-	
 	public String getNombre(){
 		return this.nombre;
 	}
