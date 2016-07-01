@@ -8,7 +8,7 @@ public class TestBar {
 
 	
 	@Test
-	public void queElBarSeAbraSinClientes(){
+	public void QueElBarSeAbraSinClientes(){
 		Bar homero = new Bar();
 		//Verifico que al inicializar el bar se encuentre cerrado
 		assertTrue(homero.estado() == false);
@@ -20,7 +20,7 @@ public class TestBar {
 	}
 	
 	@Test
-	public void queNoHayaDosClientesConElMismoNombre(){
+	public void QueNoHayaDosClientesConElMismoNombre(){
 		Bar moe = new Bar();
 		
 		Cliente carlos = new Cliente("Carlos", 25);
@@ -45,14 +45,18 @@ public class TestBar {
 		homero.agregarClientes(sandra);
 		homero.agregarClientes(eduardo);
 		
-		assertEquals("Eduardo", homero.getClientes().first().getNombre());
-		/*Como al treeset no se puede acceder a su informacion
-		  a traves del indice (como si fuera un array comun y corriente)
-		  verifico que el primero sea el correcto con un assert,
-		  el resto lo verifico por consola
+		/*Como a los TreeSet no se pueden acceder a mediante indices (como
+		 * si fueran arrays comunes y corrientes), hay 2 metodos: first() y last()
+		 * que devuelven el primer elemento y el ultimo respectivamente.
+		 * Por lo tanto verifico que el primer y ultimo elemento sean los que deben ser
+		 * y al resto lo verifico con println.
 		 */
+		
+		assertEquals("Eduardo", homero.getClientes().first().getNombre());
+		assertEquals("Sandra", homero.getClientes().last().getNombre());
+		
 		for (Cliente cli : homero.getClientes()){
-			System.out.println(cli.getNombre());
+			System.out.println("Ordenado por nombre: " + cli.getNombre());
 		}
 	}
 	
@@ -61,8 +65,41 @@ public class TestBar {
 		Bar homero = new Bar ();
 		Cliente ramiro = new Cliente("Ramiro", 22);
 		Cliente rama = new Cliente("Ramiro", 25);
+		Cliente edu = new Cliente("Eduardo", 25);
 		homero.agregarClientes(ramiro);
-		assertTrue(ramiro.equals(rama));
+		/*como tienen el mismo nombre, tiene que devolver 0
+		es decir, son iguales*/
+		assertEquals(0, ramiro.compareTo(rama));
+		
+		/*Como Ramiro es "mayor" alfabeticamente (Es decir, empieza con R y eduardo con E)
+		  tiene que devolver un numero mayor a 0*/
+		assertTrue (ramiro.compareTo(edu) > 0);
+	}
+	
+	@Test
+	public void QueLosClientesEstenOrdenadosPorEdad(){
+		ComparatorPorEdad comparador = new ComparatorPorEdad();
+		Bar homero = new Bar (comparador);
+		Cliente ramon = new Cliente("Ramon", 32);
+		Cliente pedro = new Cliente("Pedro", 21);
+		Cliente sandra = new Cliente("Sandra", 19);
+		Cliente eduardo = new Cliente("Eduardo", 36);
+		homero.agregarClientes(ramon);
+		homero.agregarClientes(pedro);
+		homero.agregarClientes(sandra);
+		homero.agregarClientes(eduardo);
+		
+		/*Como hice con el otro test, verifico que el primer y ultimo elemento
+		 * sean los que tienen que ser, y el resto los verifico con println
+		 */
+		
+		assertEquals("Sandra", homero.getClientes().first().getNombre());
+		assertEquals("Eduardo", homero.getClientes().last().getNombre());
+		
+		for(Cliente cli : homero.getClientes()){
+			System.out.println("Ordenado por edad: " + cli.getNombre() + 
+					" (" + cli.getEdad() + ")");
+		}
 	}
 
 }

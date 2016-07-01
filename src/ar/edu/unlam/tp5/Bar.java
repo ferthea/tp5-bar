@@ -11,6 +11,11 @@ public class Bar{
 		abierto = false;
 	}
 	
+	public Bar(ComparatorPorEdad comparador){
+		clientes = new TreeSet<Cliente>(comparador);
+		abierto = false;
+	}
+	
 	public void agregarClientes(Cliente cliente){
 		clientes.add(cliente);
 	}

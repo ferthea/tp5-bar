@@ -1,5 +1,6 @@
 package ar.edu.unlam.tp5;
 
+
 public class Cliente implements Comparable<Cliente>{
 	private String nombre;
 	private Integer edad;
@@ -7,6 +8,13 @@ public class Cliente implements Comparable<Cliente>{
 	public Cliente(String nombre, Integer edad){
 		this.nombre = nombre;
 		this.edad = edad;
+	}
+	
+	
+	/*Constructor por defecto para ser utilizado a la hora
+	  de usar el Comparator en la clase Bar */
+	public Cliente(){
+		
 	}
 	
 	public String getNombre(){
@@ -41,4 +49,5 @@ public class Cliente implements Comparable<Cliente>{
 	public int compareTo(Cliente cliente) {
 		return this.nombre.compareTo(cliente.getNombre());
 	}
+
 }
