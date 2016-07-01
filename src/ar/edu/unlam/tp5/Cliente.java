@@ -11,12 +11,6 @@ public class Cliente implements Comparable<Cliente>{
 	}
 	
 	
-	/*Constructor por defecto para ser utilizado a la hora
-	  de usar el Comparator en la clase Bar */
-	public Cliente(){
-		
-	}
-	
 	public String getNombre(){
 		return this.nombre;
 	}
