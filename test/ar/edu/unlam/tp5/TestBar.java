@@ -67,9 +67,11 @@ public class TestBar {
 		Cliente rama = new Cliente("Ramiro", 25);
 		Cliente edu = new Cliente("Eduardo", 25);
 		homero.agregarClientes(ramiro);
-		/*como tienen el mismo nombre, tiene que devolver 0
-		es decir, son iguales*/
-		assertEquals(0, ramiro.compareTo(rama));
+		Cliente unicoClienteDentroDelBar = homero.getClientes().first();
+		/* Ingreso un solo cliente al bar y lo comparo con otro que no haya ingresado.
+		   Como tienen el mismo nombre, tiene que devolver 0
+		   es decir, son iguales*/
+		assertEquals(0, unicoClienteDentroDelBar.compareTo(rama));
 		
 		/*Como Ramiro es "mayor" alfabeticamente (Es decir, empieza con R y eduardo con E)
 		  tiene que devolver un numero mayor a 0*/
