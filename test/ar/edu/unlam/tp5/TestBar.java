@@ -48,16 +48,11 @@ public class TestBar {
 		/*Como a los TreeSet no se pueden acceder a mediante indices (como
 		 * si fueran arrays comunes y corrientes), hay 2 metodos: first() y last()
 		 * que devuelven el primer elemento y el ultimo respectivamente.
-		 * Por lo tanto verifico que el primer y ultimo elemento sean los que deben ser
-		 * y al resto lo verifico con println.
+		 * Por lo tanto verifico que el primer y ultimo elemento sean los que deben ser.
 		 */
 		
 		assertEquals("Eduardo", homero.getClientes().first().getNombre());
 		assertEquals("Sandra", homero.getClientes().last().getNombre());
-		
-		for (Cliente cli : homero.getClientes()){
-			System.out.println("Ordenado por nombre: " + cli.getNombre());
-		}
 	}
 	
 	@Test
@@ -67,7 +62,9 @@ public class TestBar {
 		Cliente rama = new Cliente("Ramiro", 25);
 		Cliente edu = new Cliente("Eduardo", 25);
 		homero.agregarClientes(ramiro);
+		
 		Cliente unicoClienteDentroDelBar = homero.getClientes().first();
+		
 		/* Ingreso un solo cliente al bar y lo comparo con otro que no haya ingresado.
 		   Como tienen el mismo nombre, tiene que devolver 0
 		   es decir, son iguales*/
@@ -91,17 +88,9 @@ public class TestBar {
 		homero.agregarClientes(sandra);
 		homero.agregarClientes(eduardo);
 		
-		/*Como hice con el otro test, verifico que el primer y ultimo elemento
-		 * sean los que tienen que ser, y el resto los verifico con println
-		 */
-		
+		//Como hice con el otro test, verifico que el primer y ultimo elemento sean los correctos.
 		assertEquals("Sandra", homero.getClientes().first().getNombre());
 		assertEquals("Eduardo", homero.getClientes().last().getNombre());
-		
-		for(Cliente cli : homero.getClientes()){
-			System.out.println("Ordenado por edad: " + cli.getNombre() + 
-					" (" + cli.getEdad() + ")");
-		}
 	}
 
 }
